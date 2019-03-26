@@ -12,6 +12,7 @@
 	animation: Gradient 15s ease infinite;
 }
 
+
 @-webkit-keyframes Gradient {
 	0% {
 		background-position: 0% 50%
@@ -162,23 +163,93 @@ h6 {
 	}
 
 }
-
+/**/
+.toggle
+{
+    position: absolute;
+    top: 40px;
+    right: 50px;
+    background: #fff;
+    border: 2px solid #1a1a1a;
+    width: 45px;
+    height: 20px;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: 0.5s;
+}
+.toggle.active
+{
+    background: #1a1a1a;
+    border: 2px solid #fff;
+}
+.toggle:before
+{
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    background: #00151f;
+    border-radius: 50%;
+    transition: 0.5s;
+}
+.toggle.active:before
+{
+    left: 27px;
+    background: #fff;
+}
+/**/
+body.night
+{
+    background: #1a1a1a;
+}
+.svgStats.night {
+  content:url("https://discordbots.org/api/widget/551446491886125059.svg?usernamecolor=FFFFFF&topcolor=1a1a1a");
+}
 </style>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js">
+
+function onLoad(){
+  var c = Cookies.get('nightMode');
+  if(c == null) {
+    Cookies.set('nightMode', 'off', { expires: 1825, path: '' });
+  }
+  if(c == "off"){
+    return;
+  }else if(c == "on"){
+    $('.toggle').toggleClass('active')
+    $('body').toggleClass('night')
+    $('.svgStats').toggleClass('night')
+  }
+  
+}
+
+</script>
 <head>
-  <link rel="shortcut icon" href="/assets/images/bot_icon.png">
-  <meta name="application-name" content="Apex Stats Bot | Official Website">
-  <meta name="author" content="RedstonedLife & Takitsu21">
-  <meta name="description" content="Apex Stats Bot website.">
-  <meta name="google" content="notranslate">
-  <meta property="og:url" content="https://apexstats.github.io/">
-  <meta property="og:title" content="Apex Stats Bot | Official Website">
-  <meta property="og:description" content="Apex Stats Bot website.">
-  <meta property="og:image" content="/assets/images/bot_icon.png">
+  <link href="/assets/images/bot_icon.png">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300" type="text/css" />
   <title>Apex Stats | Discord Bot</title>
 </head>
 
-<body>
+<body onload="onLoad()">
+  <!-- Js Cookie manager -->
+  
+  
+  <!-- Junk Stuff -->
+  <div class="toggle"></div>
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('.toggle').click(function(){
+              $('.toggle').toggleClass('active')
+              $('body').toggleClass('night')
+              $('.svgStats').toggleClass('night')
+        })
+    })
+</script>
+
+  <!---->
   <center><div class="imageContainerY">
     <center><div class="imageContainerX">
       <center><img src="assets/images/bot_icon.png" width="256" height="256" /></center>
@@ -188,8 +259,12 @@ h6 {
   <nav class="codrops-demos">
 					<center><a href="about">About</a>
 					<a class="" href="cmds">Commands</a>
-					<a class="current-demo">Home</a></center>
+					<a class="current-demo" href="">Home</a></center>
 				</nav>
+        <!--
+        Night Mode -- FFFFFF
+        Day Mode - 1a1a1a -->
+  <center><img class="svgStats" alt="Apex Stats" src="https://discordbots.org/api/widget/551446491886125059.svg?usernamecolor=000000&topcolor=FFFFFF&middlecolor=FFFFFF"></center>
 </body>
 
 </html>
